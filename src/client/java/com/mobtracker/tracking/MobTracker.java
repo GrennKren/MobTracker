@@ -10,26 +10,15 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class MobTracker {
     private static final int DETECTION_RANGE = 50; // Range in blocks to detect mobs
 
     /**
-     * Represents directional information to the nearest tracked mob
-     */
-    public static class DirectionalInfo {
-        public final String entityName;
-        public final String horizontalDirection;
-        public final String verticalDirection;
-        public final double distance;
-
-        public DirectionalInfo(String entityName, String horizontalDirection, String verticalDirection, double distance) {
-            this.entityName = entityName;
-            this.horizontalDirection = horizontalDirection;
-            this.verticalDirection = verticalDirection;
-            this.distance = distance;
-        }
+         * Represents directional information to the nearest tracked mob
+         */
+        public record DirectionalInfo(String entityName, String horizontalDirection, String verticalDirection,
+                                      double distance) {
     }
 
     /**

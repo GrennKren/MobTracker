@@ -44,14 +44,30 @@ public class KeybindManager {
             ModConfig config = ModConfig.getInstance();
 
             if (toggleHudBinding.wasPressed()) {
-                if (config.isShowCounter() || config.isShowDirections()) {
-                    // If any display is enabled, disable both
+                boolean anyEnabled = config.isShowCounter() || config.isShowDirections();
+                // Toggle both settings to the opposite of their current combined state
+                // BUT maintain their relative state to each other
+                if (anyEnabled) {
+                    // Save current state before disabling
+                    boolean counterWasEnabled = config.isShowCounter();
+                    boolean directionsWasEnabled = config.isShowDirections();
+
+                    // Disable both (hide HUD completely)
                     config.setShowCounter(false);
                     config.setShowDirections(false);
+
+                    // Store previous state for next toggle
+                    config.setPreviousCounterState(counterWasEnabled);
+                    config.setPreviousDirectionsState(directionsWasEnabled);
                 } else {
-                    // If all displays are disabled, enable both
-                    config.setShowCounter(true);
-                    config.setShowDirections(true);
+                    // Restore previous state or default to both enabled if no previous state
+                    boolean prevCounter = config.getPreviousCounterState() != null ?
+                            config.getPreviousCounterState() : true;
+                    boolean prevDirections = config.getPreviousDirectionsState() != null ?
+                            config.getPreviousDirectionsState() : true;
+
+                    config.setShowCounter(prevCounter);
+                    config.setShowDirections(prevDirections);
                 }
             }
 

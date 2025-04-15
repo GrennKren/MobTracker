@@ -6,7 +6,6 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderTickCounter;
-import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -112,10 +111,10 @@ public class MobTrackerHUD implements HudRenderCallback {
                     // Format the direction text
                     String directionText = String.format(
                             "- %s: %s, %s (%.1f blocks)",
-                            info.entityName,
-                            info.horizontalDirection,
-                            info.verticalDirection,
-                            info.distance
+                            info.entityName(),
+                            info.horizontalDirection(),
+                            info.verticalDirection(),
+                            info.distance()
                     );
 
                     // Render the direction text

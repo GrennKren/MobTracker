@@ -2,11 +2,9 @@ package com.mobtracker.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.EntityType;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 import java.io.IOException;
@@ -27,7 +25,12 @@ public class ModConfig {
     // Configuration options
     private boolean showCounter = true;
     private boolean showDirections = true;
-    private Set<String> trackedMobs = new HashSet<>();
+    private Boolean previousCounterState = null;
+    private Boolean previousDirectionsState = null;
+
+    private final Set<String> trackedMobs = new HashSet<>();
+
+
 
     // Default constructor for GSON
     public ModConfig() {
@@ -64,11 +67,6 @@ public class ModConfig {
         return trackedMobs;
     }
 
-    public boolean isTracked(EntityType<?> entityType) {
-        String id = Registries.ENTITY_TYPE.getId(entityType).toString();
-        return trackedMobs.contains(id);
-    }
-
     public void toggleTracking(String mobId) {
         if (trackedMobs.contains(mobId)) {
             trackedMobs.remove(mobId);
@@ -76,6 +74,22 @@ public class ModConfig {
             trackedMobs.add(mobId);
         }
         save();
+    }
+
+    public Boolean getPreviousCounterState() {
+        return previousCounterState;
+    }
+
+    public void setPreviousCounterState(boolean state) {
+        this.previousCounterState = state;
+    }
+
+    public Boolean getPreviousDirectionsState() {
+        return previousDirectionsState;
+    }
+
+    public void setPreviousDirectionsState(boolean state) {
+        this.previousDirectionsState = state;
     }
 
     public static void load() {
