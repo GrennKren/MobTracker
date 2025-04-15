@@ -1,5 +1,6 @@
 package com.witherskelcounter;
 
+import com.witherskelcounter.config.ModConfig;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -18,51 +19,76 @@ public class WitherSkeletonHUD implements HudRenderCallback {
     @Override
     public void onHudRender(DrawContext drawContext, RenderTickCounter tickCounter) {
         MinecraftClient client = MinecraftClient.getInstance();
+        ModConfig config = ModConfig.getInstance();
+
+        // If both display options are disabled, don't render anything
+        if (!config.isShowCounter() && !config.isShowDirections()) {
+            return;
+        }
 
         if (client.player == null || client.world == null) {
             return;
         }
 
-        // Count wither skeletons
-        int witherCount = WitherSkeletonCounter.countWitherSkeletons();
+        int currentY = HUD_Y_POS;
 
-        // Render the count text
-        String hudText = "Wither Skeletons: " + witherCount;
-        drawContext.drawText(
-                client.textRenderer,
-                Text.literal(hudText),
-                HUD_X_POS,
-                HUD_Y_POS,
-                HUD_COLOR,
-                true // shadow
-        );
+        // Show counter if enabled
+        if (config.isShowCounter()) {
+            // Count wither skeletons
+            int witherCount = WitherSkeletonCounter.countWitherSkeletons();
 
-        // Only show direction if there are any wither skeletons
-        if (witherCount > 0) {
-            // Get directional info for the nearest wither skeleton
-            Optional<WitherSkeletonCounter.DirectionalInfo> dirInfo =
-                    WitherSkeletonCounter.getNearestWitherSkeletonDirection();
+            // Render the count text
+            String hudText = "Wither Skeletons: " + witherCount;
+            drawContext.drawText(
+                    client.textRenderer,
+                    Text.literal(hudText),
+                    HUD_X_POS,
+                    currentY,
+                    HUD_COLOR,
+                    true // shadow
+            );
 
-            if (dirInfo.isPresent()) {
-                WitherSkeletonCounter.DirectionalInfo info = dirInfo.get();
+            currentY += LINE_HEIGHT;
+        }
 
-                // Format the direction text
-                String directionText = String.format(
-                        "Nearest: %s, %s (%.1f blocks)",
-                        info.horizontalDirection,
-                        info.verticalDirection,
-                        info.distance
-                );
+        // Show directions if enabled
+        if (config.isShowDirections()) {
+            // Get the count if we haven't already got it
+            int witherCount = 0;
+            if (!config.isShowCounter()) {
+                witherCount = WitherSkeletonCounter.countWitherSkeletons();
+            } else {
+                // If we already showed the counter, we know there are skeletons
+                witherCount = 1;
+            }
 
-                // Render the direction text on the second line
-                drawContext.drawText(
-                        client.textRenderer,
-                        Text.literal(directionText),
-                        HUD_X_POS,
-                        HUD_Y_POS + LINE_HEIGHT,
-                        DIRECTION_COLOR,
-                        true // shadow
-                );
+            // Only show direction if there are any wither skeletons
+            if (witherCount > 0) {
+                // Get directional info for the nearest wither skeleton
+                Optional<WitherSkeletonCounter.DirectionalInfo> dirInfo =
+                        WitherSkeletonCounter.getNearestWitherSkeletonDirection();
+
+                if (dirInfo.isPresent()) {
+                    WitherSkeletonCounter.DirectionalInfo info = dirInfo.get();
+
+                    // Format the direction text
+                    String directionText = String.format(
+                            "Nearest: %s, %s (%.1f blocks)",
+                            info.horizontalDirection,
+                            info.verticalDirection,
+                            info.distance
+                    );
+
+                    // Render the direction text
+                    drawContext.drawText(
+                            client.textRenderer,
+                            Text.literal(directionText),
+                            HUD_X_POS,
+                            currentY,
+                            DIRECTION_COLOR,
+                            true // shadow
+                    );
+                }
             }
         }
     }

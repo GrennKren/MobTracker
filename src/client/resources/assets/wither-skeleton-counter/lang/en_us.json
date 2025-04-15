@@ -1,0 +1,10 @@
+{
+  "title.wither-skeleton-counter.config": "Wither Skeleton Counter Settings",
+  "category.wither-skeleton-counter.general": "General",
+  "option.wither-skeleton-counter.show_counter": "Show Skeleton Counter",
+  "option.wither-skeleton-counter.show_counter.tooltip": "Show the count of nearby Wither Skeletons",
+  "option.wither-skeleton-counter.show_directions": "Show Directions",
+  "option.wither-skeleton-counter.show_directions.tooltip": "Show directional guidance to the nearest Wither Skeleton",
+  "key.category.wither-skeleton-counter": "Wither Skeleton Counter",
+  "key.wither-skeleton-counter.toggle_hud": "Toggle HUD"
+}

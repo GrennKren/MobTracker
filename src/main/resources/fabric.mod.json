@@ -17,6 +17,9 @@
 	"entrypoints": {
 		"client": [
 			"com.witherskelcounter.WitherSkeletonCounterClient"
+		],
+		"modmenu": [
+			"com.witherskelcounter.config.ModMenuIntegration"
 		]
 	},
 	"mixins": [
@@ -26,5 +29,9 @@
 		"minecraft": "~1.21.4",
 		"java": ">=21",
 		"fabric-api": "*"
+	},
+	"suggests": {
+		"modmenu": "*",
+		"cloth-config": "*"
 	}
 }
