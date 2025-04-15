@@ -1,0 +1,30 @@
+{
+	"schemaVersion": 1,
+	"id": "wither-skeleton-counter",
+	"version": "${version}",
+	"name": "Wither Skeleton Counter",
+	"description": "A simple mod that displays the number of Wither Skeletons in the vicinity as a HUD element.",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/wither-skeleton-counter/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"client": [
+			"com.witherskelcounter.WitherSkeletonCounterClient"
+		]
+	},
+	"mixins": [
+	],
+	"depends": {
+		"fabricloader": ">=0.16.13",
+		"minecraft": "~1.21.4",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
