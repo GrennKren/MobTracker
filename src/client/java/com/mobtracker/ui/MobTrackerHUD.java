@@ -54,16 +54,10 @@ public class MobTrackerHUD implements HudRenderCallback {
 
                 // Render each mob count
                 for (Map.Entry<String, Integer> entry : mobCounts.entrySet()) {
-                    if (entry.getValue() <= 0) {
-                        continue;
-                    }
-
                     String mobId = entry.getKey();
 
-                    // Fix: Menggunakan method of() yang merupakan factory method untuk membuat Identifier
                     Identifier id = Identifier.of(mobId);
 
-                    // Jika mobId tidak memiliki namespace, gunakan approach alternatif
                     if (!mobId.contains(":")) {
                         id = Identifier.of("minecraft", mobId);
                     }

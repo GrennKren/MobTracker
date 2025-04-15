@@ -29,6 +29,11 @@ public class MobTracker {
         Map<String, Integer> mobCounts = new HashMap<>();
         Map<String, List<LivingEntity>> trackedMobs = getTrackedMobs();
 
+        ModConfig config = ModConfig.getInstance();
+        for (String mobId : config.getTrackedMobs()) {
+            mobCounts.put(mobId, 0);
+        }
+
         for (Map.Entry<String, List<LivingEntity>> entry : trackedMobs.entrySet()) {
             mobCounts.put(entry.getKey(), entry.getValue().size());
         }
@@ -125,6 +130,7 @@ public class MobTracker {
 
         return directionsMap;
     }
+
 
     /**
      * Gets all tracked mobs in range of the player
