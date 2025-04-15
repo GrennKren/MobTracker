@@ -1,0 +1,13 @@
+{
+  "title.mob-tracker.config": "Mob Tracker Settings",
+  "category.mob-tracker.general": "General",
+  "category.mob-tracker.mob_tracking": "Mob Tracking",
+  "option.mob-tracker.show_counter": "Show Mob Counter",
+  "option.mob-tracker.show_counter.tooltip": "Show the count of tracked mobs",
+  "option.mob-tracker.show_directions": "Show Directions",
+  "option.mob-tracker.show_directions.tooltip": "Show directional guidance to the nearest tracked mobs",
+  "key.category.mob-tracker": "Mob Tracker",
+  "key.mob-tracker.toggle_hud": "Toggle HUD",
+  "key.mob-tracker.toggle_counter": "Toggle Counter",
+  "key.mob-tracker.toggle_directions": "Toggle Directions"
+}

@@ -1,29 +1,27 @@
 {
 	"schemaVersion": 1,
-	"id": "wither-skeleton-counter",
+	"id": "mob-tracker",
 	"version": "${version}",
-	"name": "Wither Skeleton Counter",
-	"description": "A simple mod that displays the number of Wither Skeletons in the vicinity as a HUD element.",
+	"name": "Mob Tracker",
+	"description": "A mod that tracks and displays information about nearby mobs with customizable settings.",
 	"authors": [
-		"Me!"
+		"Your Name"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://example.com/",
+		"sources": "https://github.com/yourusername/mob-tracker"
 	},
-	"license": "CC0-1.0",
-	"icon": "assets/wither-skeleton-counter/icon.png",
-	"environment": "*",
+	"license": "MIT",
+	"icon": "assets/mob-tracker/icon.png",
+	"environment": "client",
 	"entrypoints": {
 		"client": [
-			"com.witherskelcounter.WitherSkeletonCounterClient"
+			"com.mobtracker.MobTrackerClient"
 		],
 		"modmenu": [
-			"com.witherskelcounter.config.ModMenuIntegration"
+			"com.mobtracker.config.ModMenuIntegration"
 		]
 	},
-	"mixins": [
-	],
 	"depends": {
 		"fabricloader": ">=0.16.13",
 		"minecraft": "~1.21.4",
