@@ -50,7 +50,7 @@ public class ModMenuIntegration implements ModMenuApi {
         // Get all possible hostile/monster mobs to track
         List<EntityType<?>> trackableMobs = new ArrayList<>();
         for (EntityType<?> entityType : Registries.ENTITY_TYPE) {
-            if (isTrackableHostileMob(entityType)) {
+            if (isTrackableMob(entityType)) {
                 trackableMobs.add(entityType);
             }
         }
@@ -100,32 +100,90 @@ public class ModMenuIntegration implements ModMenuApi {
         return result.toString().trim();
     }
 
-    private boolean isTrackableHostileMob(EntityType<?> entityType) {
-        // This is a simplified check - in reality, you'd want a more robust check
-        // or perhaps a predefined list of mob types that make sense to track
+    private boolean isTrackableMob(EntityType<?> entityType) {
         String id = Registries.ENTITY_TYPE.getId(entityType).toString();
-
-        // Common hostile mobs (you can expand this list)
-        return id.contains("zombie") ||
-                id.contains("skeleton") ||
-                id.contains("creeper") ||
-                id.contains("spider") ||
-                id.contains("enderman") ||
-                id.contains("slime") ||
-                id.contains("witch") ||
-                id.contains("phantom") ||
-                id.contains("blaze") ||
-                id.contains("ghast") ||
-                id.contains("magma_cube") ||
-                id.contains("hoglin") ||
-                id.contains("piglin") ||
-                id.contains("zoglin") ||
-                id.contains("guardian") ||
-                id.contains("shulker") ||
-                id.contains("vex") ||
-                id.contains("vindicator") ||
-                id.contains("ravager") ||
-                id.contains("evoker") ||
-                id.contains("pillager");
+        return id.equals("minecraft:allay") ||
+                id.equals("minecraft:armadillo") ||
+                id.equals("minecraft:axolotl") ||
+                id.equals("minecraft:bat") ||
+                id.equals("minecraft:bee") ||
+                id.equals("minecraft:blaze") ||
+                id.equals("minecraft:bogged") ||
+                id.equals("minecraft:breeze") ||
+                id.equals("minecraft:camel") ||
+                id.equals("minecraft:cat") ||
+                id.equals("minecraft:cave_spider") ||
+                id.equals("minecraft:chicken") ||
+                id.equals("minecraft:cod") ||
+                id.equals("minecraft:cow") ||
+                id.equals("minecraft:creaking") ||
+                id.equals("minecraft:creeper") ||
+                id.equals("minecraft:dolphin") ||
+                id.equals("minecraft:donkey") ||
+                id.equals("minecraft:drowned") ||
+                id.equals("minecraft:elder_guardian") ||
+                id.equals("minecraft:ender_dragon") ||
+                id.equals("minecraft:enderman") ||
+                id.equals("minecraft:endermite") ||
+                id.equals("minecraft:evoker") || // Corrected from evocation_illager
+                id.equals("minecraft:fox") ||
+                id.equals("minecraft:frog") ||
+                id.equals("minecraft:ghast") ||
+                id.equals("minecraft:giant") ||
+                id.equals("minecraft:glow_squid") ||
+                id.equals("minecraft:goat") ||
+                id.equals("minecraft:guardian") ||
+                id.equals("minecraft:hoglin") ||
+                id.equals("minecraft:horse") ||
+                id.equals("minecraft:husk") ||
+                id.equals("minecraft:illusioner") || // Illusioner is in the game data, though rarely used
+                id.equals("minecraft:iron_golem") ||
+                id.equals("minecraft:llama") ||
+                id.equals("minecraft:magma_cube") ||
+                id.equals("minecraft:mooshroom") ||
+                id.equals("minecraft:mule") ||
+                id.equals("minecraft:ocelot") ||
+                id.equals("minecraft:panda") ||
+                id.equals("minecraft:parrot") ||
+                id.equals("minecraft:phantom") ||
+                id.equals("minecraft:pig") ||
+                id.equals("minecraft:piglin") ||
+                id.equals("minecraft:piglin_brute") ||
+                id.equals("minecraft:pillager") ||
+                id.equals("minecraft:polar_bear") ||
+                id.equals("minecraft:pufferfish") ||
+                id.equals("minecraft:rabbit") ||
+                id.equals("minecraft:ravager") ||
+                id.equals("minecraft:salmon") ||
+                id.equals("minecraft:sheep") ||
+                id.equals("minecraft:shulker") ||
+                id.equals("minecraft:silverfish") ||
+                id.equals("minecraft:skeleton") ||
+                id.equals("minecraft:skeleton_horse") ||
+                id.equals("minecraft:slime") ||
+                id.equals("minecraft:sniffer") ||
+                id.equals("minecraft:snow_golem") ||
+                id.equals("minecraft:spider") ||
+                id.equals("minecraft:squid") ||
+                id.equals("minecraft:stray") ||
+                id.equals("minecraft:strider") ||
+                id.equals("minecraft:tadpole") ||
+                id.equals("minecraft:trader_llama") ||
+                id.equals("minecraft:tropical_fish") ||
+                id.equals("minecraft:turtle") ||
+                id.equals("minecraft:vex") ||
+                id.equals("minecraft:villager") ||
+                id.equals("minecraft:vindicator") ||
+                id.equals("minecraft:wandering_trader") ||
+                id.equals("minecraft:warden") ||
+                id.equals("minecraft:witch") ||
+                id.equals("minecraft:wither") ||
+                id.equals("minecraft:wither_skeleton") ||
+                id.equals("minecraft:wolf") ||
+                id.equals("minecraft:zoglin") ||
+                id.equals("minecraft:zombie") ||
+                id.equals("minecraft:zombie_horse") || // Zombie Horse is in the game data
+                id.equals("minecraft:zombie_villager") ||
+                id.equals("minecraft:zombified_piglin"); // Corrected from zombie_pigman
     }
 }
